@@ -4,6 +4,20 @@ import Nimble
 @testable import Matrix
 
 class PolynomialTests: XCTestCase {
+  static var allTests = [
+    ("testDegreeWithNoTrailingZeroes", testDegreeWithNoTrailingZeroes),
+    ("testDegreeWithTrailingZeroes", testDegreeWithTrailingZeroes),
+    ("testDegreeOfConstant", testDegreeOfConstant),
+    ("testDegreeOfZero", testDegreeOfZero),
+    ("testDegreeOfZeroWithMultipleZeroes", testDegreeOfZeroWithMultipleZeroes),
+    ("testDescriptionOfOne", testDescriptionOfOne),
+    ("testDescriptionOfZero", testDescriptionOfZero),
+    ("testDescriptionOfGeneralPolynomial", testDescriptionOfGeneralPolynomial),
+    ("testAddingPolynomialsOfSameDegree", testAddingPolynomialsOfSameDegree),
+    ("testAddingPolynomialsWithCancelling", testAddingPolynomialsWithCancelling),
+    ("testAddingPolynomialsWithLeftDegreeHigher", testAddingPolynomialsWithLeftDegreeHigher),
+    ("testAddingPolynomialsWithRightDegreeHigher", testAddingPolynomialsWithRightDegreeHigher)
+  ]
 
   // degree
   func testDegreeWithNoTrailingZeroes() {

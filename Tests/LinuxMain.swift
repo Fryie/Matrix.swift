@@ -1,7 +1,8 @@
 import XCTest
 
-import MatrixTests
+@testable import MatrixTests
 
-var tests = [XCTestCaseEntry]()
-tests += MatrixTests.allTests()
-XCTMain(tests)
+XCTMain([
+  testCase(PolynomialTests.allTests),
+  testCase(MatrixTests.allTests)
+])
