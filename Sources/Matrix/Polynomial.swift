@@ -1,14 +1,14 @@
 import Foundation
 
-struct Polynomial: Equatable, CustomStringConvertible {
-  enum Degree: Equatable {
+public struct Polynomial: Equatable, CustomStringConvertible {
+  public enum Degree: Equatable {
     case pos(Int), negInf
   }
 
   // For simplicity, we'll only allow polynomials with integer coefficients
   private var coefficients: [Int]
 
-  var degree: Degree {
+  public var degree: Degree {
     if coefficients.count > 0 {
       return .pos(coefficients.count - 1)
     } else {
@@ -16,7 +16,7 @@ struct Polynomial: Equatable, CustomStringConvertible {
     }
   }
 
-  var description: String {
+  public var description: String {
     let terms = coefficients.enumerated().compactMap { (i: Int, c: Int) -> String? in
       guard c != 0 else { return nil }
       guard !(i == 0 && c == 1) else { return "1" }
@@ -41,7 +41,7 @@ struct Polynomial: Equatable, CustomStringConvertible {
     return terms.reversed().joined(separator: " + ").replacingOccurrences(of: "+ -", with: "- ")
   }
 
-  init(from coefficients: [Int]) {
+  public init(from coefficients: [Int]) {
     self.coefficients = Polynomial.removeTrailingZeroes(coefficients)
   }
 
@@ -61,9 +61,9 @@ struct Polynomial: Equatable, CustomStringConvertible {
 }
 
 extension Polynomial: Ring {
-  static var zero = Polynomial(from: [0])
+  public static var zero = Polynomial(from: [0])
 
-  static func +(l: Polynomial, r: Polynomial) -> Polynomial {
+  public static func +(l: Polynomial, r: Polynomial) -> Polynomial {
     let lastIndex = max(l.coefficients.endIndex, r.coefficients.endIndex) - 1
     let newCoefficients = (0...lastIndex).map { (index: Int) -> Int in
       let lValue = index < l.coefficients.count ? l.coefficients[index] : 0
@@ -74,7 +74,7 @@ extension Polynomial: Ring {
     return Polynomial(from: newCoefficients)
   }
 
-  static prefix func -(p: Polynomial) -> Polynomial {
+  public static prefix func -(p: Polynomial) -> Polynomial {
     let newCoefficients = p.coefficients.map { -$0 }
     return Polynomial(from: newCoefficients)
   }

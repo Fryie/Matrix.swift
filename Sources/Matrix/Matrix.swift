@@ -1,7 +1,7 @@
-struct Matrix<T: Ring> {
+public struct Matrix<T: Ring> {
   private var rows: [[T]]
 
-  init(rows: [[T]]) {
+  public init(rows: [[T]]) {
     self.rows = rows
   }
 }
